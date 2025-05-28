@@ -6,6 +6,20 @@ const app = express();
 const users = [];
 app.use(express.json());
 
+function auth (req, res, next){
+  const token = req.headers.token;
+  const decodeData = jwt.verify(token, JWT_SECRET);
+
+  if(decodeData.username){
+    req.username = decodeData.username;
+    next()
+   }else{
+    res.json({
+      message: "You are logged in"
+    })
+   }
+}
+
 app.post("/signup", function(req, res){
   const username = req.body.username
   const password = req.body.password
@@ -36,15 +50,11 @@ app.post("/signin", function(req, res){
   }
 })
 
-app.get("/me", function(req, res){
-  const token = req.headers.token;
-
-  const decodeData = jwt.verify(token, JWT_SECRET);
-
-  if(decodeData.username){
+app.get("/me",auth, function(req, res){
+  
     let foundUser = null;
     for(let i = 0; i<users.length;i++){
-      if(users[i].username === decodeData.username){
+      if(users[i].username === req.username){
         foundUser = users[i];
       }
     }
@@ -54,7 +64,7 @@ app.get("/me", function(req, res){
       username: foundUser.username,
       password: foundUser.password
     })
-  }
+  
 })
 
 app.listen(3000);
