@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "Express": "^3.0.1",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "name": "node",
+  "version": "1.0.0",
+  "description": "\"This repository contains my Node.js practice work, including various concepts and projects to enhance my understanding of backend development.\"",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manpreets59/Node.js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manpreets59/Node.js/issues"
+  },
+  "homepage": "https://github.com/Manpreets59/Node.js#readme"
+}
