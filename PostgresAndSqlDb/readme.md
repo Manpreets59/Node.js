@@ -8,3 +8,4 @@ npm install pg @types/pg
 
 how sql injection works
 npm install express @types/express
+sql injection queries: parameterized queries to prevent SQL injection

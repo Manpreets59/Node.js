@@ -1,4 +1,4 @@
-dist
-node_module
-tsconfig.json
-tsconfig.tsbuildinfo
+./dist
+./node_modules
+./tsconfig.json
+./tsconfig.tsbuildinfo
