@@ -16,23 +16,41 @@ pgClient.connect().catch(err => {
 
 app.post("/signup", async (req, res) => {
   try {
-    const { username, password, email } = req.body;
+    const { username, password, email, city, country, street, pincode } = req.body;
 
     // Validate input
-    if (!username || !password || !email) {
+    if (!username || !password || !email || !city || !street || !pincode || !country) {
       return res.status(400).json({
-        error: "Missing required fields: username, password, and email are required"
+        error: "Missing required fields: username, password, email, city, country, street, and pincode are required"
       });
     }
 
-    // Use proper parameterized queries to prevent SQL injection
-    const insertQuery = `INSERT INTO users (username, email, password) VALUES ($1, $2, $3)`;
-    const response = await pgClient.query(insertQuery, [username, email, password]);
+    // Start transaction
+    await pgClient.query("BEGIN");
 
-    res.status(201).json({
-      message: "You have signed up successfully",
-      userId: response.rowCount
-    });
+    try {
+      // Insert user and get the ID back
+      const insertQuery = `INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id`;
+      const userResponse = await pgClient.query(insertQuery, [username, email, password]);
+      const userId = userResponse.rows[0].id;
+
+      // Insert address with the user ID
+      const addressInsertQuery = `INSERT INTO addresses (city, country, street, pincode, user_id) VALUES ($1, $2, $3, $4, $5)`;
+      await pgClient.query(addressInsertQuery, [city, country, street, pincode, userId]);
+
+      // Commit transaction
+      await pgClient.query("COMMIT");
+
+      res.status(201).json({
+        message: "You have signed up successfully",
+        userId: userId
+      });
+
+    } catch (transactionError) {
+      // Rollback transaction on any error
+      await pgClient.query("ROLLBACK");
+      throw transactionError;
+    }
 
   } catch (error: any) {
     console.error('Database error:', error);
