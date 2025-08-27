@@ -9,3 +9,5 @@
     "dev" : "tsc -b && node ./dist/index.js"
   },
 
+npm install prisma 
+npx prisma init 
