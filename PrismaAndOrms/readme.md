@@ -11,3 +11,6 @@
 
 npm install prisma 
 npx prisma init 
+
+
+npx prisma migrate dev
