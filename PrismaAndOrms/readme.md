@@ -14,4 +14,9 @@ npx prisma init
 
 
 npx prisma migrate dev
+
+generating the prisma client
 npx prisma generate
+
+output   = "../src/generated/prisma" removed from generator 
+
