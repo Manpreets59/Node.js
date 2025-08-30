@@ -24,10 +24,38 @@ const client = new PrismaClient();
 //   });
 // }
 
+// async function createUser() {
+//   const user = await client.user.findFirst({
+//     where: {
+//         id: 2
+//     }
+    
+// });
+// console.log(user);
+    
+// }
+
+// async function createUser() {
+//   const user = await client.user.findFirst({
+//     where: {
+//         id: 2
+//     },
+//     select: {
+//         username: true
+//     }
+    
+// });
+// console.log(user);
+    
+// }
+
 async function createUser() {
   const user = await client.user.findFirst({
     where: {
         id: 2
+    },
+    include: {
+        todos: true
     }
     
 });

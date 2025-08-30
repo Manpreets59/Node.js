@@ -12,7 +12,7 @@
 npm install prisma 
 npx prisma init 
 
-
+// Every time schema is change or created 
 npx prisma migrate dev
 
 generating the prisma client
