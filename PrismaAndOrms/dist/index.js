@@ -3,10 +3,10 @@ const client = new PrismaClient();
 // async function createUser() {
 //   await client.user.create({
 //     data: {
-//         username: "Alice",
+//         username: "arman",
 //         password: "123123",
-//         age: "21",
-//         city: "Delhi"
+//         age: 22,
+//         city: "Amritsar"
 //     }
 //   });
 // }
