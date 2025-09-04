@@ -20,3 +20,8 @@ npx prisma generate
 
 output   = "../src/generated/prisma" removed from generator 
 
+Raw queries in database
+RelationShip
+
+Expressify it 
+npm install express @types/express
