@@ -28,13 +28,24 @@ const client = new PrismaClient();
 // });
 // console.log(user);
 // }
+// async function createUser() {
+//   const user = await client.user.findFirst({
+//     where: {
+//         id: 2
+//     },
+//     select: {
+//         username: true
+//     }
+// });
+// console.log(user);
+// }
 async function createUser() {
     const user = await client.user.findFirst({
         where: {
             id: 2
         },
-        select: {
-            username: true
+        include: {
+            todos: true
         }
     });
     console.log(user);
