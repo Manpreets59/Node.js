@@ -25,3 +25,16 @@ RelationShip
 
 Expressify it 
 npm install express @types/express
+
+seed.ts for dummy data 
+{
+  // ...existing code...
+  "prisma": {
+    "seed": "ts-node ./prisma/seed.ts"
+  }
+  // ...existing code...
+}  add this to package.json
+
+npm install -D ts-node typescript @types/node
+
+npx prisma db seed 
